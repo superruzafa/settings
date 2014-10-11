@@ -72,11 +72,11 @@ class Collection implements Selectable
     /**
      * Walks the item collection gathering those items selected by a callback.
      *
-     * @param   callable    $callback   Callback used to either select items or not.
+     * @param   \Closure    $callback   Callback used to either select items or not.
      * @param   int         $count      Maximum number of items to be gathered
      * @return  array
      */
-    private function walkItems(callable $callback, $count)
+    private function walkItems(\Closure $callback, $count)
     {
         $selected = array();
         reset($this->items);

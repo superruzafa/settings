@@ -1,6 +1,8 @@
 Settings
 ========
 
+[![Build Status](https://travis-ci.org/superruzafa/settings.svg?branch=master)](https://travis-ci.org/superruzafa/settings)
+
 Settings is a library for manage collection of elements.
 Each element is included into the collection along with some metadata.
 This metadata could be used later for enumerate a subset of elements.
