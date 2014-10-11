@@ -60,17 +60,17 @@ abstract class TagSelector implements Selector
     }
 
     /** @inheritdoc */
-    final public function doSelect($candidate)
+    final public function select($metadata)
     {
-        if (!is_array($candidate)) {
+        if (!is_array($metadata)) {
             throw new SelectorException('TagSelector can only receive arrays as select input');
         }
-        return $this->doTagSelect($candidate);
+        return $this->doTagSelect($metadata);
     }
 
     /**
-     * @param   string[[    $cadidate
+     * @param   string[]    $metadata
      * @return  bool
      */
-    abstract protected function doTagSelect(array $cadidate);
+    abstract protected function doTagSelect(array $metadata);
 } 

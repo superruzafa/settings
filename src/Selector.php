@@ -5,8 +5,8 @@ namespace Superruzafa\Settings;
 interface Selector
 {
     /**
-     * @param   mixed   $input
+     * @param   mixed   $metadata
      * @return  bool
      */
-    public function doSelect($input);
+    public function select($metadata);
 }

@@ -4,9 +4,9 @@ namespace Superruzafa\Settings\Selector;
 
 class StrictTagSelector extends TagSelector
 {
-    protected function doTagSelect(array $candidate)
+    protected function doTagSelect(array $metadata)
     {
-        $tags = $this->classifyTags($candidate);
+        $tags = $this->classifyTags($metadata);
         $i1 = array_intersect($this->tags, $tags['all']);
         $i2 = array_intersect($this->tags, $tags['required']);
 

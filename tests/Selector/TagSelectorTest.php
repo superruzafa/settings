@@ -43,18 +43,18 @@ class TagSelectorTest extends \PHPUnit_Framework_TestCase
      * @test
      * @group exceptions
      */
-    public function doSelectWithNonArray()
+    public function selectWithNonArray()
     {
         $selector = $this
             ->getMockBuilder('Superruzafa\Settings\Selector\TagSelector')
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $this->setExpectedException('Superruzafa\Settings\SelectorException', 'TagSelector can only receive arrays as select input');
-        $selector->doSelect('foo');
+        $selector->select('foo');
     }
 
     /** @test */
-    public function doSelect()
+    public function select()
     {
         $selector = $this
             ->getMockBuilder('Superruzafa\Settings\Selector\TagSelector')
@@ -67,6 +67,6 @@ class TagSelectorTest extends \PHPUnit_Framework_TestCase
             ->method('doTagSelect')
             ->with(array('foo', 'bar'))
             ->will($this->returnValue(true));
-        $this->assertTrue($selector->doSelect(array('foo', 'bar')));
+        $this->assertTrue($selector->select(array('foo', 'bar')));
     }
 }
