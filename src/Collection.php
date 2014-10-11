@@ -36,8 +36,9 @@ class Collection implements Selectable
     /** @inheritdoc */
     public function select()
     {
-        $callback = function ($metadata) {
-            return $this->selector->select($metadata);
+        $selector = $this->selector;
+        $callback = function ($metadata) use ($selector) {
+            return $selector->select($metadata);
         };
         return $this->walkItems($callback, count($this->items));
     }
@@ -45,8 +46,9 @@ class Collection implements Selectable
     /** @inheritdoc */
     public function selectOne()
     {
-        $callback = function ($metadata) {
-            return $this->selector->select($metadata);
+        $selector = $this->selector;
+        $callback = function ($metadata) use ($selector) {
+            return $selector->select($metadata);
         };
         return $this->walkItems($callback, 1);
     }
@@ -54,8 +56,9 @@ class Collection implements Selectable
     /** @inheritdoc */
     public function discard()
     {
-        $callback = function ($metadata) {
-            return !$this->selector->select($metadata);
+        $selector = $this->selector;
+        $callback = function ($metadata) use ($selector) {
+            return !$selector->select($metadata);
         };
         return $this->walkItems($callback, count($this->items));
     }
@@ -63,8 +66,9 @@ class Collection implements Selectable
     /** @inheritdoc */
     public function discardOne()
     {
-        $callback = function ($metadata) {
-            return !$this->selector->select($metadata);
+        $selector = $this->selector;
+        $callback = function ($metadata) use ($selector) {
+            return !$selector->select($metadata);
         };
         return $this->walkItems($callback, 1);
     }
