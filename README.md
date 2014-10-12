@@ -40,14 +40,36 @@ $collection->add('item2', array('tag1', '[tag2]'));
 $collection->add('item3', array('[tag1]', 'tag2', 'foo'));
 $collection->add('item4', array('[tag1]', 'tag2', '[bar]'));
 
+// The selector would select those items containing both `tag1` and `tag2` tags.
+// If the item defines any other required tag that is not matched then the item is discarded.
 $selector = new StrictTagSelector('tag1', 'tag2');
 $selected = $collection->setSelector($selector)->select();
 
 // $selected = ['item2', 'item4']
-// item1 wasn't selected because 'tag3' wasn't included in the selector's tags.
-// item2 was selected because of explicit matching of 'tag1' and 'tag2'
-// item3 wasn't selected because 'foo' wasn't included in the selector's tags.
-// item4 matched tag1 and tag2, 'bar' is an optional tag and it's not necessary to match it explicitlly.
+```
+
+#### Lazy tag selector
+
+This selector select those items whose metatags are a superset of the selector tags.
+
+``` php
+<?php
+
+use Superruzafa\Settings\Collection;
+use Superruzafa\Settings\Selector\LazyTagSelector;
+
+$collection = new Collection();
+$collection->add('item1', array('tag1', '[tag2]', 'tag3'));
+$collection->add('item2', array('tag1', '[tag2]'));
+$collection->add('item3', array('[tag1]', 'tag2', 'foo'));
+$collection->add('item4', array('[tag1]', 'foo', '[bar]'));
+
+// The selector would select those items containing at least both `tag1` and `tag2` tags.
+// Other tags (required or optional) doesn't affect.
+$selector = new LazyTagSelector('tag1', 'tag2');
+$selected = $collection->setSelector($selector)->select();
+
+// $selected = ['item1', 'item2', 'item3']
 ```
 
 ### Other selectors
