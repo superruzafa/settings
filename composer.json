@@ -9,6 +9,7 @@
             "email": "superruzafa@gmail.com"
         }
     ],
+    "license": "MIT",
     "homepage": "https://github.com/superruzafa/settings",
     "require": {
         "php": ">=5.3.0"
