@@ -44,7 +44,6 @@ $collection->add('item4', array('[tag1]', 'tag2', '[bar]'));
 // If the item defines any other required tag that is not matched then the item is discarded.
 $selector = new StrictTagSelector('tag1', 'tag2');
 $selected = $collection->setSelector($selector)->select();
-
 // $selected = ['item2', 'item4']
 ```
 
@@ -68,8 +67,29 @@ $collection->add('item4', array('[tag1]', 'foo', '[bar]'));
 // Other tags (required or optional) doesn't affect.
 $selector = new LazyTagSelector('tag1', 'tag2');
 $selected = $collection->setSelector($selector)->select();
-
 // $selected = ['item1', 'item2', 'item3']
+```
+
+### Domain selector
+
+This selector uses domain names to select elements within a collection.
+
+``` php
+<?php
+
+use Superruzafa\Settings\Collection;
+use Superruzafa\Settings\Selector\DomainSelector;
+
+$collection = new Collection();
+$collection->add('item1', 'github.com');
+$collection->add('item2', 'www.github.com');
+$collection->add('item3', 'example.com');
+$collection->add('item4', 'ftp.example.com');
+
+// The selector would select those items associated with github.com or *.github.com.
+$selector = new DomainSelector('github.com');
+$selected = $collection->setSelector($selector)->select();
+// $selected = ['item1', 'item2']
 ```
 
 ### Other selectors
