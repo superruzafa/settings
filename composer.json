@@ -17,6 +17,9 @@
     "require-dev": {
         "phpunit/phpunit": "~4.3"
     },
+    "suggest": {
+        "superruzafa/settings-loader": "Allows to load related complex settings from several sources"
+    },
     "autoload": {
         "psr-4": {
             "Superruzafa\\Settings\\": "src/"
